@@ -1,7 +1,6 @@
 import streamlit as st
 
 st.title("Try calculating fair value yourself!")
-st.subheader("Grab a pen or pencil and a piece of paper!")
 
 
 # # Initialize session state to manage the flow of the app
@@ -141,10 +140,23 @@ elif st.session_state["step"] == 3:
     
 # Step 4: Ask for the second number
 elif st.session_state["step"] == 4:
-    st.subheader("Chatbot:")
-    st.write("Great! Now, please provide your second number.")
-    number2 = st.text_input("Enter the second number:")
+    st.write("Predict the EPS and P/E ratio 5 years from now")
+    eps_future = st.text_input("Enter the EPS 5 years from now:")
+    PE_future = st.text_input("Enter the P/E ratio 5 years from now:")
     
-    if number2:
-        st.session_state["number2"] = number2
-        st.success(f"Thank you! You provided the numbers {st.session_state['number1']} and {st.session_state['number2']}.")
+    if st.button("Next Step"):
+      go_to_next_step()  
+
+elif st.session_state["step"] == 5:
+
+    future_pred = int(st.text_input("Future value of the stock in 5 years"))
+    wanted_return = int(st.slider("How much return in percentage do you want per year from the stock?"))
+    
+    if future_pred and wanted_return:
+
+        rate = (wanted_return/100) + 1
+        exponent = rate**5
+        principal = future_pred/exponent
+
+        st.write("The fair value is:", round(principal, 1))
+        #see if there is a way to put "fair value" before adding values

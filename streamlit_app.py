@@ -7,24 +7,24 @@ import pandas as pd
 
 df = pd.DataFrame(
     [
-       {"Current": "", "5 Years ago": "", "10 Years ago": "","Compounded change in past 5 years": "", "Compounded change in past 10 years": "",  "Next 5 Years Prediction": ""},
-       {"Current": "", "5 Years ago": "", "10 Years ago": "","Compounded change in past 5 years": "", "Compounded change in past 10 years": "",  "Next 5 Years Prediction": ""}
+       {"Current": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": "",  "Next 5 Years Prediction": ""},
+       {"Current": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": "",  "Next 5 Years Prediction": ""}
     
     ],
    index = ["EPS", "P/E ratio"]
 )
 
 
-edited_df = st.data_editor(df, 
+
+st.dataframe(st.data_editor(df, 
                            use_container_width=True,
                            column_config={
                                
-        "Compounded change in past 5 years": st.column_config.Column(width=200),  # Adjust width for each column
-        "Compounded change in past 10 years": st.column_config.Column(width=200)
+        "Annualized growth in the past 5 years": st.column_config.Column(width=200),  # Adjust width for each column
+        "Annualized growth in the past 10 years": st.column_config.Column(width=200)
     
-    },)
-
-st.dataframe(edited_df, use_container_width=True)
+    }), 
+    use_container_width=True)
 
 # # Initialize session state for tracking the conversation flow
 # if "step" not in st.session_state:

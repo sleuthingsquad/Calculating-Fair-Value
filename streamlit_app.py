@@ -39,10 +39,10 @@ df_preds = pd.DataFrame(
 )
 edited_df_preds = st.data_editor(df_preds)
 
-st.subheader("Now, plug in your 3 possible future values and the rate you want. Note down the 3 possible fair values. Read the annual report and do some research, and see what value is right for you!")
+st.write("Now, plug in your 3 possible future values and the rate you want. Note down the 3 possible fair values. Read the annual report and do some research, and see what value is right for you!")
 
-future_pred = int(st.text_input("Future value of the stock in 5 years"))
-wanted_return = int(st.slider("How much return in percentage do you want per year from the stock?"))
+future_pred = float(st.text_input("Future value of the stock in 5 years"))
+wanted_return = float(st.slider("How much return in percentage do you want per year from the stock?"))
 
 st.write("The fair value is:")
 
@@ -58,15 +58,22 @@ if future_pred and wanted_return:
 #see about the table size
 
 st.subheader("Now let's try calculating the fair value with Graham's method!")
-graham_eps = int(st.text_input("Trailing 12 months Earnings per Share:"))
-growth = int(st.text_input("growth"))
+graham_eps = float(st.text_input("Trailing 12 months Earnings per Share:"))
+growth = float(st.text_input("growth"))
 
 #if st.button("Calculate fair value"):
-graham_value = graham_eps * (8.5 + (2*growth))
+brackets = 8.5 + (2 * growth)
+#print(brackets)
+graham_value = graham_eps * brackets
+#print(graham_value)
 st.write("Fair Value:", graham_value)
 
-st.write("You can compare this value with your own fair value to see how close they are to better understand the differences between the methods!")
-#need to make both suitable for float values.
+margin_of_safety = float(st.slider("How much margin of safety do you want (in %)?"))
+mos_rate = 1 - (margin_of_safety/100)
+discounted_val = graham_value * mos_rate
+st.write("Discounted Value:", discounted_val)
+
+st.write("You can compare these values with your own fair value to see how close they are to better understand the differences between the methods!")
 
 # # Initialize session state for tracking the conversation flow
 # if "step" not in st.session_state:

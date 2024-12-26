@@ -1,30 +1,72 @@
 import streamlit as st
+import pandas as pd
 
 st.title("Try calculating fair value yourself!")
 
+st.subheader("Get and calculate data on the EPS and P/E ratio history!")
 
-import pandas as pd
 
 df = pd.DataFrame(
     [
-       {"Current": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": "",  "Next 5 Years Prediction": ""},
-       {"Current": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": "",  "Next 5 Years Prediction": ""}
+       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": ""},
+       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": ""}
     
     ],
    index = ["EPS", "P/E ratio"]
 )
 
 
-
-st.dataframe(st.data_editor(df, 
+edited_df = st.data_editor(df, 
                            use_container_width=True,
                            column_config={
                                
         "Annualized growth in the past 5 years": st.column_config.Column(width=200),  # Adjust width for each column
         "Annualized growth in the past 10 years": st.column_config.Column(width=200)
     
-    }), 
-    use_container_width=True)
+    },)
+
+st.dataframe(edited_df, use_container_width=True)
+
+st.subheader("Your predictions for the EPS and P/E ratio in the next 5 years:")
+df_preds = pd.DataFrame(
+    [
+       {"Bull Case": "", "Base Case": "", "Bear Case": ""},
+       {"Bull Case": "", "Base Case": "", "Bear Case": ""},
+       {"Bull Case": "", "Base Case": "", "Bear Case": ""}
+    
+    ],
+   index = ["EPS", "P/E ratio", "Future Price"]
+)
+edited_df_preds = st.data_editor(df_preds)
+
+st.subheader("Now, plug in your 3 possible future values and the rate you want. Note down the 3 possible fair values. Read the annual report and do some research, and see what value is right for you!")
+
+future_pred = int(st.text_input("Future value of the stock in 5 years"))
+wanted_return = int(st.slider("How much return in percentage do you want per year from the stock?"))
+
+st.write("The fair value is:")
+
+if future_pred and wanted_return:
+
+      rate = (wanted_return/100) + 1
+      exponent = rate**5
+      principal = future_pred/exponent
+      st.write(principal)
+        
+   #see if there is a way to put "fair value" before adding values
+
+#see about the table size
+
+st.subheader("Now let's try calculating the fair value with Graham's method!")
+graham_eps = int(st.text_input("Trailing 12 months Earnings per Share:"))
+growth = int(st.text_input("growth"))
+
+#if st.button("Calculate fair value"):
+graham_value = graham_eps * (8.5 + (2*growth))
+st.write("Fair Value:", graham_value)
+
+st.write("You can compare this value with your own fair value to see how close they are to better understand the differences between the methods!")
+#need to make both suitable for float values.
 
 # # Initialize session state for tracking the conversation flow
 # if "step" not in st.session_state:

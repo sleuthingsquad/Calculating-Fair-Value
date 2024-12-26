@@ -15,7 +15,14 @@ df = pd.DataFrame(
 )
 
 
-edited_df = st.data_editor(df, use_container_width=True)
+edited_df = st.data_editor(df, 
+                           use_container_width=True,
+                           column_config={
+                               
+        "Compounded change in past 5 years": st.column_config.Column(width=200),  # Adjust width for each column
+        "Compounded change in past 10 years": st.column_config.Column(width=200)
+    
+    },)
 
 st.dataframe(edited_df, use_container_width=True)
 

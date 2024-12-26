@@ -15,7 +15,7 @@ df = pd.DataFrame(
 )
 
 
-edited_df = st.data_editor(df)
+edited_df = st.data_editor(df, use_container_width=True)
 
 # # Initialize session state for tracking the conversation flow
 # if "step" not in st.session_state:

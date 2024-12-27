@@ -51,7 +51,7 @@ if future_pred_input:
           rate = (wanted_return/100) + 1
           exponent = rate**5
           principal = future_pred/exponent
-          st.write(principal)     
+          st.write(principal)   
 
 #see about the table sizes
 

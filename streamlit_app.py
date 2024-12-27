@@ -7,8 +7,8 @@ st.subheader("Get and calculate data on the EPS and P/E ratio history!")
 
 df = pd.DataFrame(
     [
-       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": ""},
-       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","Annualized growth in the past 5 years": "", "Annualized growth in the past 10 years": ""}
+       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","5 years annualized growth": "", "10 years annualized growth": ""},
+       {"Current Value": "", "5 Years ago": "", "10 Years ago": "","5 years annualized growth": "", "10 years annualized growth": ""}
     
     ],
    index = ["EPS", "P/E ratio"]

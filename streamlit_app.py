@@ -40,7 +40,7 @@ edited_df_preds = st.data_editor(df_preds)
 
 st.write("Now, plug in your 3 possible future values and the rate you want. Note down the 3 possible fair values. Read the annual report and do some research, and see what value is right for you!")
 
-future_pred_input = st.text_input("Future value of the stock in 5 years")
+future_pred_input = st.text_input("Start by entering the future value of the stock in 5 years")
 if future_pred_input:
      future_pred = float(future_pred_input)
      wanted_return_input = st.slider("How much return in percentage do you want per year from the stock?")

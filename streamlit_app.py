@@ -19,7 +19,7 @@ edited_df = st.data_editor(df,
                            column_config={
                                
         "5 years annualized growth": st.column_config.Column(width=200),
-        "10 years annualized growth": st.column_config.Column(width=200)
+        "10 years annualized growth": st.column_config.Column(width=300)
     
     }
     )
